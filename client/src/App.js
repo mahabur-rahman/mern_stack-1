@@ -4,9 +4,10 @@ import ProductList from "./pages/ProductList";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import SingleProduct from "./pages/SingleProduct";
+import Register from "./pages/Register";
 
 function App() {
-  return <SingleProduct />;
+  return <Register />;
 }
 
 export default App;
