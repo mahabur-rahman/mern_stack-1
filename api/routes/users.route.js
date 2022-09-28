@@ -11,6 +11,9 @@ const UserModel = require("../models/User.model");
 // GET MONTHLY STATS
 
 // #################################
+
+// update user
+
 router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
   if (req.body.password) {
     req.body.password = CryptoJS.AES.encrypt(
@@ -33,6 +36,18 @@ router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
     return res.status(500).json(err);
   }
 });
+
+// delete user
+router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
+  try {
+    await UserModel.findByIdAndDelete(req.params.id);
+
+    return res.status(200).json("User has been deleted..");
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
+
 // #################################
 
 // export
