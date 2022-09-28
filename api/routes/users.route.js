@@ -1,7 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const CryptoJS = require("crypto-js");
-const { verifyToken, verifyTokenAndAuthorization } = require("./verifyToken");
+const {
+  verifyToken,
+  verifyTokenAndAuthorization,
+  verifyTokenAndAdmin,
+} = require("./verifyToken");
 const UserModel = require("../models/User.model");
 
 // UPDATE
@@ -43,6 +47,17 @@ router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
     await UserModel.findByIdAndDelete(req.params.id);
 
     return res.status(200).json("User has been deleted..");
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
+
+// get single user
+router.get("/find/:id", verifyTokenAndAdmin, async (req, res) => {
+  try {
+    const singleUser = await UserModel.findById(req.params.id);
+
+    return res.status(200).json(singleUser);
   } catch (err) {
     return res.status(500).json(err);
   }
