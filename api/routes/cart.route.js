@@ -28,6 +28,22 @@ router.post("/", verifyToken, async (req, res) => {
     return res.status(500).json(err);
   }
 });
+
+// UPDATE
+router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
+  try {
+    const updatedCart = await CartModel.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+    return res.status(200).json(updatedCart);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
 // ##########################
 
 module.exports = router;
