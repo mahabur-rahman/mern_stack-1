@@ -45,16 +45,16 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
   }
 });
 
-// // DELETE CART
-// router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
-//   try {
-//     await CartModel.findByIdAndDelete(req.params.id);
+// DELETE CART
+router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
+  try {
+    await OrderModel.findByIdAndDelete(req.params.id);
 
-//     return res.status(200).json("Cart has been deleted...");
-//   } catch (err) {
-//     return res.status(500).json(err);
-//   }
-// });
+    return res.status(200).json("Order has been deleted...");
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
 
 // // GET USER CART
 // router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
