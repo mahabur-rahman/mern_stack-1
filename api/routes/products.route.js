@@ -24,6 +24,23 @@ router.post("/", verifyTokenAndAdmin, async (req, res) => {
   }
 });
 
+// update product
+router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
+  try {
+    const updatedProduct = await ProductModel.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+
+    return res.status(200).json(updatedProduct);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
+
 // #########################
 
 module.exports = router;
