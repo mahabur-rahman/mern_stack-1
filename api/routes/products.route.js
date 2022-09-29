@@ -52,6 +52,17 @@ router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
   }
 });
 
+// get product
+router.get("/find/:id", async (req, res) => {
+  try {
+    const product = await ProductModel.findById(req.params.id);
+
+    return res.status(200).json(product);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
+
 // #########################
 
 module.exports = router;
