@@ -67,16 +67,16 @@ router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
   }
 });
 
-// // GET ALL CART
-// router.get("/", verifyTokenAndAdmin, async (req, res) => {
-//   try {
-//     const carts = await CartModel.find();
+// GET ALL ORDER
+router.get("/", verifyTokenAndAdmin, async (req, res) => {
+  try {
+    const orders = await OrderModel.find();
 
-//     return res.status(200).json(carts);
-//   } catch (err) {
-//     return res.status(500).json(err);
-//   }
-// });
+    return res.status(200).json(orders);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
 
 // ##########################
 
