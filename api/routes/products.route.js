@@ -63,6 +63,32 @@ router.get("/find/:id", async (req, res) => {
   }
 });
 
+// get all products
+router.get("/", async (req, res) => {
+  const qNew = req.query.new;
+  const qCategory = req.query.category;
+
+  try {
+    let products;
+
+    if (qNew) {
+      products = await ProductModel.find().sort({ createdAt: -1 }).limit(3);
+    } else if (qCategory) {
+      products = await ProductModel.find({
+        categories: {
+          $in: [qCategory],
+        },
+      });
+    } else {
+      products = await ProductModel.find();
+    }
+
+    return res.status(200).json(products);
+  } catch (err) {
+    return res.status(200).json(err);
+  }
+});
+
 // #########################
 
 module.exports = router;
