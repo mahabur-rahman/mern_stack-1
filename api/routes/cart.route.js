@@ -44,6 +44,18 @@ router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
     return res.status(500).json(err);
   }
 });
+
+// DELETE CART
+router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
+  try {
+    await CartModel.findByIdAndDelete(req.params.id);
+
+    return res.status(200).json("Cart has been deleted...");
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
+
 // ##########################
 
 module.exports = router;
