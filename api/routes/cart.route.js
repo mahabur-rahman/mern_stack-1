@@ -67,6 +67,17 @@ router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
   }
 });
 
+// GET ALL CART
+router.get("/", verifyTokenAndAdmin, async (req, res) => {
+  try {
+    const carts = await CartModel.find();
+
+    return res.status(200).json(carts);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
+
 // ##########################
 
 module.exports = router;
