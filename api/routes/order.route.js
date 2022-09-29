@@ -12,7 +12,7 @@ const OrderModel = require("../models/Order.model");
 // CREATE
 // UPDATE
 // DELETE
-// GET USER CART
+// GET USER order
 // GET ALL
 
 // ##########################
@@ -45,7 +45,7 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
   }
 });
 
-// DELETE CART
+// DELETE order
 router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
     await OrderModel.findByIdAndDelete(req.params.id);
@@ -56,16 +56,16 @@ router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
   }
 });
 
-// // GET USER CART
-// router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
-//   try {
-//     const cart = await CartModel.findOne({ userId: req.params.userId });
+// GET USER Order
+router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
+  try {
+    const order = await OrderModel.findOne({ userId: req.params.userId });
 
-//     return res.status(200).json(cart);
-//   } catch (err) {
-//     return res.status(500).json(err);
-//   }
-// });
+    return res.status(200).json(order);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
 
 // // GET ALL CART
 // router.get("/", verifyTokenAndAdmin, async (req, res) => {
