@@ -56,6 +56,17 @@ router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
   }
 });
 
+// GET USER CART
+router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
+  try {
+    const cart = await CartModel.findOne({ userId: req.params.userId });
+
+    return res.status(200).json(cart);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
+
 // ##########################
 
 module.exports = router;
