@@ -12,6 +12,7 @@ const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users.route");
 const productRoute = require("./routes/products.route");
 const cartRoute = require("./routes/cart.route");
+const orderRoute = require("./routes/order.route");
 
 // connected to db
 const connectedDB = require("./db/connect");
@@ -23,6 +24,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/users/", userRoute);
 app.use("/api/products", productRoute);
 app.use("/api/carts", cartRoute);
+app.use("/api/orders", orderRoute);
 
 // listen app
 app.listen(PORT, () => {
