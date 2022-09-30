@@ -18,11 +18,11 @@ const App = () => {
             <Home />
           </Route>
 
-          <Route path="/pay">
+          <Route exact path="/pay">
             <Pay />
           </Route>
 
-          <Route path="/success">
+          <Route exact path="/success">
             <SuccessPayment />
           </Route>
         </Switch>

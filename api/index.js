@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const colors = require("colors");
+const cors = require("cors");
 
 // env config
 const dotenv = require("dotenv");
@@ -20,6 +21,7 @@ const connectedDB = require("./db/connect");
 connectedDB();
 
 // middleware
+app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/users/", userRoute);

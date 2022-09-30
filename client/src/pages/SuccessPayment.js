@@ -1,7 +1,7 @@
 import React from "react";
 
 const SuccessPayment = () => {
-  return <div>SuccessPayment</div>;
+  return <h1>SuccessPayment</h1>;
 };
 
 export default SuccessPayment;
