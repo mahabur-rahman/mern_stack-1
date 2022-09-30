@@ -5,9 +5,30 @@ import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import SingleProduct from "./pages/SingleProduct";
 import Register from "./pages/Register";
+import Pay from "./pages/Pay";
+import SuccessPayment from "./pages/SuccessPayment";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-function App() {
-  return <Register />;
-}
+const App = () => {
+  return (
+    <>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+
+          <Route path="/pay">
+            <Pay />
+          </Route>
+
+          <Route path="/success">
+            <SuccessPayment />
+          </Route>
+        </Switch>
+      </Router>
+    </>
+  );
+};
 
 export default App;
