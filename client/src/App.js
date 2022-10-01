@@ -7,6 +7,7 @@ import SingleProduct from "./pages/SingleProduct";
 import Register from "./pages/Register";
 import Pay from "./pages/Pay";
 import SuccessPayment from "./pages/SuccessPayment";
+import Error from "./pages/Error";
 import {
   BrowserRouter as Router,
   Switch,
@@ -51,6 +52,10 @@ const App = () => {
 
           <Route exact path="/success">
             <SuccessPayment />
+          </Route>
+
+          <Route exact>
+            <Error />
           </Route>
         </Switch>
       </Router>
