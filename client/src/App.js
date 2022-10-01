@@ -7,15 +7,42 @@ import SingleProduct from "./pages/SingleProduct";
 import Register from "./pages/Register";
 import Pay from "./pages/Pay";
 import SuccessPayment from "./pages/SuccessPayment";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 
 const App = () => {
+  const user = true;
+
   return (
     <>
       <Router>
         <Switch>
           <Route exact path="/">
             <Home />
+          </Route>
+
+          <Route exact path="/login">
+            {user ? <Redirect to="/" /> : <Login />}
+          </Route>
+
+          <Route exact path="/register">
+            {user ? <Redirect to="/" /> : <Register />}
+          </Route>
+
+          <Route exact path="/products/:category">
+            <ProductList />
+          </Route>
+
+          <Route exact path="/product/:productId">
+            <SingleProduct />
+          </Route>
+
+          <Route exact path="/cart">
+            <Cart />
           </Route>
 
           <Route exact path="/pay">
