@@ -4,8 +4,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 const Payment = () => {
-  const KEY =
-    "pk_test_51JwpL5BWwMKzdCZXHGWcrq7mPnn9bChbPihabAISBE63zU3EfjJxL0xfxHqUfkLQay70v4FoZkKprjH2sjcvzFrq00lNPvm2ZN";
+  const KEY = process.env.REACT_APP_STRIPE;
 
   const [stripeToken, setStripeToken] = useState(null);
   const history = useHistory();

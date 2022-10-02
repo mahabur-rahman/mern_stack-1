@@ -8,6 +8,8 @@ import Navbar from "../components/Navbar";
 import NewsLetter from "../components/NewsLetter";
 import axios from "axios";
 import { publicRequest } from "../publicMethods";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../redux/cartRedux";
 
 const Container = styled.div``;
 
@@ -122,6 +124,8 @@ const SingleProduct = () => {
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
 
+  const dispatch = useDispatch();
+
   // fetch data from db using productId
 
   useEffect(() => {
@@ -149,7 +153,9 @@ const SingleProduct = () => {
   };
 
   // addToCart
-  const addToCart = () => {};
+  const addToCart = () => {
+    dispatch(addProduct({ ...singleProduct, quantity, color, size }));
+  };
 
   return (
     <Container>
