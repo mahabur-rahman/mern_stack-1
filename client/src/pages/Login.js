@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { login } from "../redux/apiCalls";
 
 const Container = styled.div`
   width: 100vw;
@@ -44,16 +46,42 @@ const Button = styled.button`
   margin-bottom: 10px;
 `;
 
+const Error = styled.span`
+  color: red;
+`;
+
 const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { isFetching, error } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  // make login api call
+  const handleClick = (e) => {
+    e.preventDefault();
+
+    login(dispatch, { username, password });
+  };
+
   return (
     <Container>
       <Wrapper>
         <Title>Sign In</Title>
 
         <Form>
-          <Input placeholder="username" />
-          <Input placeholder="password" />
-          <Button>LOG IN</Button>
+          <Input
+            placeholder="username"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <Input
+            type="password"
+            placeholder="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Button onClick={handleClick}>LOG IN</Button>
+
+          {error && <Error>Something went wrong!</Error>}
         </Form>
       </Wrapper>
     </Container>
