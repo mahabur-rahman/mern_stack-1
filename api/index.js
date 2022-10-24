@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 5000;
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/user");
 const productRoute = require("./routes/product");
+const cartRoute = require("./routes/cart");
 
 // connected to db
 const connectedDB = require("./db/connect");
@@ -21,6 +22,7 @@ app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/products", productRoute);
+app.use("/api/carts", cartRoute);
 
 // listen app
 app.listen(PORT, () => {
