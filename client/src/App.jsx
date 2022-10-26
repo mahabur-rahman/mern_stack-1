@@ -13,9 +13,10 @@ import {
 } from "react-router-dom";
 import Pay from "./components/Pay";
 import Success from "./components/Success";
+import { useSelector } from "react-redux";
 
 const App = () => {
-  const user = true;
+  const user = useSelector((state) => state.user.currentUser);
 
   return (
     <Router>
