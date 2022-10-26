@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 
 const Success = () => {
   const location = useLocation();
-  console.log("location : ", location.state.data);
+  console.log("success page : ", location);
 
   return <div>Success</div>;
 };
