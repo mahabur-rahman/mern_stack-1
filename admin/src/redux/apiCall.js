@@ -1,5 +1,8 @@
-import { publicRequest } from "../requestMethod";
+import { publicRequest, userRequest } from "../requestMethod";
 import {
+  deleteProductFailure,
+  deleteProductStart,
+  deleteProductSuccess,
   getProductFailure,
   getProductStart,
   getProductSuccess,
@@ -31,5 +34,19 @@ export const getProducts = async (dispatch) => {
     dispatch(getProductSuccess(res.data));
   } catch (err) {
     dispatch(getProductFailure());
+  }
+};
+
+// delete product
+
+export const deleteProduct = async (id, dispatch) => {
+  dispatch(deleteProductStart());
+
+  try {
+    const res = await userRequest.delete(`/products/${id}`);
+
+    dispatch(deleteProductSuccess(res.data));
+  } catch (err) {
+    dispatch(deleteProductFailure());
   }
 };
